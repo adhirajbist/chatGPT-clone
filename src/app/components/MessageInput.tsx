@@ -5,8 +5,10 @@ import Image from "next/image";
 
 export default function MessageInput({
   handleMessageSend,
+  replyIsLoading,
 }: {
   handleMessageSend: (content: string) => void;
+  replyIsLoading: boolean;
 }) {
   const messageTextArea = useRef<HTMLDivElement>(null);
   const resetTextArea = () => {
@@ -43,12 +45,12 @@ export default function MessageInput({
               data-placeholder="Enter Message"
               contentEditable
               suppressContentEditableWarning
-              onKeyDown={handleMessageInputKey}
+              onKeyDown={replyIsLoading ? undefined : handleMessageInputKey}
             ></div>
             <button
               className="self-end"
               type="button"
-              onClick={handleSendButtonClick}
+              onClick={replyIsLoading ? undefined : handleSendButtonClick}
             >
               <Image
                 src="/arrow-up-circle.svg"
