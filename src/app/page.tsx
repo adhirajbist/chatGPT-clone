@@ -17,11 +17,13 @@ export default function Home() {
     setMessages([...messages, newMessage]);
     mutation.mutate([...messages, newMessage]);
   };
-
   return (
     <div className="h-full w-full flex flex-col gap-y-1 py-4">
       <Conversation messages={messages} />
-      <MessageInput handleMessageSend={handleMessageSend} />
+      <MessageInput
+        handleMessageSend={handleMessageSend}
+        replyIsLoading={mutation.isPending}
+      />
     </div>
   );
 }
