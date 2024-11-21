@@ -8,6 +8,7 @@ import { assistantConfig } from "../../hiAssistant.config";
 export default function Home() {
   const { messages, setMessages, mutation } = useChatCompletion();
   const { role } = assistantConfig;
+
   const handleMessageSend = (content: string) => {
     const newMessage = {
       role,
@@ -16,6 +17,7 @@ export default function Home() {
     setMessages([...messages, newMessage]);
     mutation.mutate([...messages, newMessage]);
   };
+
   return (
     <div className="h-full w-full flex flex-col gap-y-1 py-4">
       <Conversation messages={messages} />
